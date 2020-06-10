@@ -1,0 +1,4 @@
+The numpy is imported as an alias np. This is just for having a shorthand notation for numpy while using the functionalities of it.
+>>> import numpy as np
+    O : If you get an error stating the numpy module isn't available, then you will need to install it using the pip intsall numpy command in the cmd
+
