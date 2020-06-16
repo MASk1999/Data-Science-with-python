@@ -57,14 +57,20 @@ dtype('int32')
 array([[5, 5, 0],
        [6, 8, 5]])
 
->>> b[1,2]		# accessing the array element with row index 1 and column index 2
+>>> b[1,2]		       # accessing the array element with row index 1 and column index 2
 5
+
+>>> a1[-1]                  # accessing the last element of the array
+6
 
 >>> a1[0:3]			# Slicing the first three elements of the array a1
 array([1, 2, 3])
+
 >>> a2[1:6]			# Slicing by selecting the rows (/if the elements in the row < count specified then entire row is sliced/)
 array([[5, 6, 7, 8]])		# Row indexed(1) is selected and the first 6 elements are to be sliced
 
+>>> a1[::-1]
+array([6,5,4,3,2,1])
 >>> a2[0,0:4]			# Row indexed(0) is selected and the first 4 elements are sliced out
 array([1, 2, 3, 4])
 
@@ -152,8 +158,8 @@ array([[6, 2],
 array([6, 2, 3, 4, 5, 6])
 
 >>> for x in a3:			# Printing an array using loops 					
-	print(x)
-	
+	print(x)	
+
 [[1 2]
  [3 4]]
 [[5 6]
@@ -165,6 +171,7 @@ array([6, 2, 3, 4, 5, 6])
 	for y in x:
 		for z in y:
 			print(z)			
+
 1
 2
 3
@@ -192,4 +199,62 @@ array([6, 2, 3, 4, 5, 6])
 10
 11
 12
+
+>>> d1=a1.reshape(2,3)
+
+>>> d1.T                           # Transposing the array
+array([[1, 4],
+       [2, 5],
+       [3, 6]])
+
+>>> a1[:,np.newaxis]               # Creating a column array using np.newaxis attribute
+array([[1],
+       [2],
+       [3],
+       [4],
+       [5],
+       [6]])
+
+>>> f=np.array([1,2,3,4])		
+
+>>> g=np.array([5,6,7,8])
+
+>>> np.concatenate([f,g])		# concatenating the arrays
+array([1, 2, 3, 4, 5, 6, 7, 8])
+
+>>> np.hstack([f,g])			# concatenating the array horizontally (adds the 2nd array to the right of the 1st array) 
+array([1, 2, 3, 4, 5, 6, 7, 8])
+
+>>> np.vstack([f,g])			# concatenating the array vertically (adds the 2nd array as a row, resulting in 2D array)
+array([[1, 2, 3, 4],
+       [5, 6, 7, 8]])
+
+>>> h=np.vstack([f,g])
+
+>>> upper,lower=np.vsplit(h,[1]) 	# splitting an array vertically into 2 parts, the [1] indicates that each split should contain an array
+
+>>> upper				# upper portion of splitted array
+array([[1, 2, 3, 4]])
+
+>>> lower				# lower portion of the splitted array
+array([[5, 6, 7, 8]])
+
+>>> right,left=np.hsplit(h,[2])		# splitting an array horizontally into 2 parts, the [2] indicates that each split should contain 2 columns
+
+>>> right				# right portion of the splitted array
+array([[1, 2],
+       [5, 6]])
+
+>>> left				# left portion of the splitted array
+array([[3, 4],
+       [7, 8]])
+
+>>> a1+2                           # Broadcasting an array, this adds 2 to every element of the array
+array([3, 4, 5, 6, 7, 8])
+
+>>> a1*2                           # Multiplying 2 to every element of the array                           
+array([ 2,  4,  6,  8, 10, 12])
+
+>>> a1**3                          # Cubing each element in the array using broadcasting
+array([  1,   8,  27,  64, 125, 216], dtype=int32)
 
