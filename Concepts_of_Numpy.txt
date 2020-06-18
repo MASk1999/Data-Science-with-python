@@ -47,6 +47,19 @@ array([ 0,  2,  4,  6,  8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28])
 >>> np.linspace(0, 4, 9)		# Creating an array with 9 equally spaced elements between 0 to 4
 array([0. , 0.5, 1. , 1.5, 2. , 2.5, 3. , 3.5, 4. ])
 
+>>> np.ones((2,2),dtype='int64')	# Creating an array of ones of 2 rows and 2 columns
+array([[1, 1],
+       [1, 1]], dtype=int64)
+
+>>> np.zeros((2,2),dtype='int32')	# Creating a zero array of 2 rows and 2 columns
+array([[0, 0],
+       [0, 0]])
+
+>>> np.eye(3,dtype='int32')		# Creating an identity matrix of ndim=3
+array([[1, 0, 0],
+       [0, 1, 0],
+       [0, 0, 1]])
+
 >>> b.dtype		# checking the datatype of the array
 dtype('int32')
 
@@ -257,4 +270,104 @@ array([ 2,  4,  6,  8, 10, 12])
 
 >>> a1**3                          # Cubing each element in the array using broadcasting
 array([  1,   8,  27,  64, 125, 216], dtype=int32)
+
+>>> np.negative(a1)		   # Negating each value in the array
+array([-1, -2, -3, -4, -5, -6])
+
+>>> np.absolute(a)		   # similar to abs function
+array([1, 2, 3, 4, 5, 6])
+
+>>> np.multiply.reduce(a1)	   # Goes on multiplying each element of array, until the array elements are exhausted 
+720				   # On a closer look, this gives the factorial of the consecutive elements starting from 1
+
+>>> np.multiply.accumulate(a1)				# To store each intermendiate results of multiplying the array
+array([  1,   2,   6,  24, 120, 720], dtype=int32)
+
+>>> x=np.array([1,2,3,4])
+
+>>> y=np.array([5,6,7,8])
+
+>>> x+y				   # adding two arrays x and y
+array([ 6,  8, 10, 12])
+
+>>> x>2				   # Creating a boolean mask of each element greater than 2
+array([False, False,  True,  True])
+
+>>> np.count_nonzero(x)		   # Counting the number of non-zero elements in the array
+4
+
+>>> np.count_nonzero(x>2)	   # Counting the number of non-zero elements in the array which are greater than 2
+2
+
+>>> x[x<3]			   # To get an array of the masked values 
+array([1, 2])
+
+>>> b=np.random.randint(0,10,size=(2,3))
+
+>>> b
+array([[2, 0, 5],
+       [3, 2, 6]])
+
+>>> row=[0,1]
+
+>>> col=[1,2]
+
+>>> b[row,col]			# Fancy indexing : Indexing arrays with more than one parameter
+array([0, 6])			# Gives an array consisting of 0th row 1st element (indexes), and 1st row 2nd element
+
+>>> b[row,col]+=1		# Performing operations on the specific element using fancy indexing
+
+>>> b				# Only the elements with the macthing indices are operated upon
+array([[2, 1, 5],
+       [3, 2, 7]])
+
+>>> np.add.at(b,0,2)		# For adding a scalar to a specific element of array using .at function
+
+>>> b				# The 0th element is added with the scalar value of 2
+array([[4, 3, 7],
+       [3, 2, 7]])
+
+>>> np.subtract.at(b,(0,1),2)	# 2D indexing can be done in this way
+
+>>> b				# Element at row 0 and column 1 is subtracted with a value 2
+array([[4, 4, 2],
+       [4, 2, 2]])
+
+>>> np.sort(b)			# Sorting the array elements, each row is sorted separately.
+array([[3, 4, 7],
+       [2, 3, 7]])
+
+>>> c= np.array([[ 8,  7,  4, 12, 14],
+       [ 4,  8,  8, 10,  2],
+       [10,  2,  2, 14, 14]])
+
+>>> c				
+array([[ 8,  7,  4, 12, 14],
+       [ 4,  8,  8, 10,  2],
+       [10,  2,  2, 14, 14]])
+
+>>> np.argsort(c)		# To get the indexes of the sorted elements, we use argsort
+array([[2, 1, 0, 3, 4],
+       [4, 0, 1, 2, 3],
+       [1, 2, 0, 3, 4]], dtype=int32)
+
+>>> np.sort(c,axis=0)		# To sort the array along the columns
+array([[ 4,  2,  2, 10,  2],
+       [ 8,  7,  4, 12, 14],
+       [10,  8,  8, 14, 14]]) 
+
+>>> np.sort(c,axis=1)		# To sort the array along the rows, same as the sort() function
+array([[ 4,  7,  8, 12, 14],
+       [ 2,  4,  8,  8, 10],
+       [ 2,  2, 10, 14, 14]])
+
+>>> c=np.delete(c,(3,4),axis=1)	# To delete rows or columns from an array. Note: axis=1 refers to columns
+
+>>> c
+array([[ 8,  7,  4],
+       [ 4,  8,  8],
+       [10,  2,  2]])
+
+>>> c.diagonal()		# Getting the diagonal elements. Note: Possible only for square matrices
+array([8, 8, 2])
 
