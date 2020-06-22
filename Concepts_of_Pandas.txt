@@ -1,0 +1,7 @@
+If you are unfamiliar with IDLE, here are some quick facts to make you understand the text below:
+(*) IDLE provides a shell to execute commands one line at a time.
+(*) As soon as you type the command and press enter the interpreter processes the python command and gives desired outputs and error messages.
+(*) The lines starting with '>>>' represents the python program or commands.
+(*) The lines without the '>>>' sign and after the command/program is the output you get when you run the command by pressing enter.
+(*) To run an entire program at once, you can create a new file by pressing CTRL+N (for windows) and execute the file by pressing F5 key.
+------------------------------------------------------------------------------------------------------------------------------------------------
