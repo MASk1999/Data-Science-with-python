@@ -5,3 +5,94 @@ If you are unfamiliar with IDLE, here are some quick facts to make you understan
 (*) The lines without the '>>>' sign and after the command/program is the output you get when you run the command by pressing enter.
 (*) To run an entire program at once, you can create a new file by pressing CTRL+N (for windows) and execute the file by pressing F5 key.
 ------------------------------------------------------------------------------------------------------------------------------------------------
+
+Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 22:20:52) [MSC v.1916 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+
+# As Numpy is aliased as np, similarly Pandas is aliased as pd
+
+>>> import pandas as pd
+
+>>> import numpy as np			# It is good to import numpy as well because some of the operations involves methods of Numpy
+
+>>> pd.Series()					# Creating an empty series (structured as 1D arrays) using pandas
+Warning (from warnings module):
+  File "__main__", line 1
+DeprecationWarning: The default dtype for empty Series will be 'object' instead of 'float64' in a future version. Specify a dtype explicitly to silence this warning.
+Series([], dtype: float64)
+
+>>> List=['a','b','c','d','e','f']
+
+>>> pd.Series(List)				# Creating a series from a list
+0    a						# It can be observed that the dtype of the series of string elements is object and not a string
+1    b					
+2    c
+3    d
+4    e
+5    f
+dtype: object
+
+>>> pd.Series(List,index=[1,2,3,4,5,6])		# Overwriting the indexes of the series (custom indices)
+1    a
+2    b
+3    c
+4    d
+5    e
+6    f
+dtype: object
+
+>>> Dict={'a':1,'b':2,'c':3,'d':4,'e':5,'f':6}	
+
+>>> series1=pd.Series(Dict)			# Creating a series using a dictionary
+
+>>> series1					# Note that the dictionary keys will become the indices of the rows
+a    1
+b    2
+c    3
+d    4
+e    5
+f    6
+dtype: int64
+
+>>> series1[1]				# Accessing the elements of the series
+2
+
+>>> series1[0:3]			# slicing operation to get the first 3 elements of the series
+a    1
+b    2
+c    3
+dtype: int64
+
+>>> series1['a']			# Accessing the series using keys or indices
+1
+
+>>> series1[['a','d','f']]		# Accessing multiple elements using indices
+a    1
+d    4
+f    6
+dtype: int64
+
+>>> list(series1.items())					# To get a list of values. Each tuple consists of index and its value.
+[('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 5), ('f', 6)]
+
+>>> series1.keys()						# To get a list of keys of the series 
+Index(['a', 'b', 'c', 'd', 'e', 'f'], dtype='object')
+
+>>> series1['g']=7			# Adding a row to the series
+
+>>> series1
+a    1
+b    2
+c    3
+d    4
+e    5
+f    6
+g    7
+dtype: int64
+
+>>> pd.DataFrame()			# Creating a DataFrame (Structured as 2D arrays) using pandas
+Empty DataFrame
+Columns: []
+Index: []
+
+
