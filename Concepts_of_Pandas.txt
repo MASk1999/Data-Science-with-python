@@ -95,4 +95,158 @@ Empty DataFrame
 Columns: []
 Index: []
 
+>>> data=['Audi','BMW','Mercedes','Skoda','Renault']		
+
+>>> pd.DataFrame(data)				# Creating a dataframe from a list
+          0
+0      Audi
+1       BMW
+2  Mercedes
+3     Skoda
+4   Renault
+
+>>> data=[['Audi',17.84],['BMW',14],['Mercedes',16.65],['Skoda',17.9],['Renault',13.8]]		
+
+>>> pd.DataFrame(data)				# Creating a dataframe of two columns from a list of lists
+          0      1
+0      Audi  17.84
+1       BMW  14.00
+2  Mercedes  16.65
+3     Skoda  17.90
+4   Renault  13.80
+
+>>> data={'Car':['A4','A6','X1','M3','GLA','GLC'],
+	  'Company':['Audi','Audi','BMW','BMW','Mercedes','Mercedes'],
+	  'Mileage_(P)':[17.84,14,16.65,20,17.9,13.8]}
+
+>>> pd.DataFrame(data)				# Creating a dataframe from a dictionary, the keys of the dictionary becomes the column names
+   Car   Company  Mileage_(P)
+0   A4      Audi        17.84
+1   A6      Audi        14.00
+2   X1       BMW        16.65
+3   M3       BMW        20.00
+4  GLA  Mercedes        17.90
+5  GLC  Mercedes        13.80
+
+>>> df.index=[1,2,3,4,5,6]			# Renaming the default index using the .index method
+
+>>> df
+   Car   Company  Mileage_(P)
+1   A4      Audi        17.84
+2   A6      Audi        14.00
+3   X1       BMW        16.65
+4   M3       BMW        20.00
+5  GLA  Mercedes        17.90
+6  GLC  Mercedes        13.80
+
+>>> df['Top_Speed']=[209.196,249.426,193.104,250,205,249.426]	# Adding a column to a dataframe
+
+>>> df
+   Car   Company  Mileage_(P)  Top_Speed
+1   A4      Audi        17.84    209.196
+2   A6      Audi        14.00    249.426
+3   X1       BMW        16.65    193.104
+4   M3       BMW        20.00    250.000
+5  GLA  Mercedes        17.90    205.000
+6  GLC  Mercedes        13.80    249.426
+
+>>> df.head()					# To get the top 5 rows of the dataframe
+   Car   Company Mileage_(P) Top_Speed
+1   A4      Audi       17.84   209.196
+2   A6      Audi          14   249.426
+3   X1       BMW       16.65   193.104
+4   M3       BMW          20       250
+5  GLA  Mercedes        17.9       205
+
+>>> df['Car']					# To access the data of a particular column
+1     A4
+2     A6
+3     X1
+4     M3
+5    GLA
+6    GLC
+Name: Car, dtype: object
+
+>>> df.loc[:,'Car':'Mileage_(P)']		# Slicing a dataframe to get all the rows and columns from 'Car' to 'Mileage_(P)'
+   Car   Company  Mileage_(P)
+1   A4      Audi        17.84
+2   A6      Audi        14.00
+3   X1       BMW        16.65
+4   M3       BMW        20.00
+5  GLA  Mercedes        17.90
+6  GLC  Mercedes        13.80
+
+>>> df.loc[1:3,['Car','Top_Speed']]		# Slicing and fancy indexing a dataframe to get the top three rows and specified cols
+  Car  Top_Speed
+1  A4    209.196
+2  A6    249.426
+3  X1    193.104
+
+>>> df['Sample']='T1'
+
+>>> df
+   Car   Company  Mileage_(P)  Top_Speed Sample
+1   A4      Audi        17.84    209.196     T1
+2   A6      Audi        14.00    249.426     T1
+3   X1       BMW        16.65    193.104     T1
+4   M3       BMW        20.00    250.000     T1
+5  GLA  Mercedes        17.90    205.000     T1
+6  GLC  Mercedes        13.80    249.426     T1
+
+>>> del df['Sample']				# Deleting a column from a dataframe
+
+>>> df
+   Car   Company  Mileage_(P)  Top_Speed
+1   A4      Audi        17.84    209.196
+2   A6      Audi        14.00    249.426
+3   X1       BMW        16.65    193.104
+4   M3       BMW        20.00    250.000
+5  GLA  Mercedes        17.90    205.000
+6  GLC  Mercedes        13.80    249.426
+
+>>> df.loc['Sample']='S1'			# Adding a row to the dataframe using the .loc function
+
+>>> df
+        Car   Company Mileage_(P) Top_Speed
+1        A4      Audi       17.84   209.196
+2        A6      Audi          14   249.426
+3        X1       BMW       16.65   193.104
+4        M3       BMW          20       250
+5       GLA  Mercedes        17.9       205
+6       GLC  Mercedes        13.8   249.426
+Sample   S1        S1          S1        S1
+
+>>> df=df.drop('Sample')			# To delete a row from the dataframe
+
+>>> df
+   Car   Company Mileage_(P) Top_Speed
+1   A4      Audi       17.84   209.196
+2   A6      Audi          14   249.426
+3   X1       BMW       16.65   193.104
+4   M3       BMW          20       250
+5  GLA  Mercedes        17.9       205
+6  GLC  Mercedes        13.8   249.426
+
+>>> max(df['Top_Speed'])			# Using aggregations to get summary data
+250.0
+
+>>> df.values					# To get all the values in the dataframe. The data is stored as array of lists
+array([['A4', 'Audi', 17.84, 209.196],
+       ['A6', 'Audi', 14.0, 249.426],
+       ['X1', 'BMW', 16.65, 193.104],
+       ['M3', 'BMW', 20.0, 250.0],
+       ['GLA', 'Mercedes', 17.9, 205.0],
+       ['GLC', 'Mercedes', 13.8, 249.426]], dtype=object) 
+
+>>> index=[[1,2,3,4],['a','b','c','d']]		# Creating a custom index for multi-indexing
+
+>>> pd.DataFrame(np.random.randint(0,10,(4,4)),index=index)	# Creating a multi-indexed dataframe using the custom indices.
+     0  1  2  3
+1 a  7  5  2  1
+2 b  1  1  5  4
+3 c  5  0  5  6
+4 d  3  7  1  8
+
+
+
 
